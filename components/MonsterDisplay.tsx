@@ -1,6 +1,7 @@
-import { useEffect } from 'react';
-import { useReadContract, useAccount } from 'wagmi';
+import React, { useEffect } from 'react';
+import { useReadContract, useAccount, useBalance } from 'wagmi';
 import { abi } from '../gameContractABI';
+import FormDisplay from './FormDisplay';
 
 interface MonsterDisplayProps {
   monsterName: string;
@@ -50,11 +51,10 @@ const MonsterDisplay: React.FC<MonsterDisplayProps> = ({ monsterName }) => {
   // Sprawdzenie, czy totalXP jest zdefiniowane przed użyciem
   if (totalXP === undefined || playerXP === undefined) return <div>Data not available</div>;
 
-  const yourShare = Number(playerXP) / Number(totalXP) * 100;
-
-
-
-
+  // Obliczanie wartości procentowej totalXP w stosunku do playerXP
+  const totalXPBigInt = BigInt(totalXP.toString());
+  const playerXPBigInt = BigInt(playerXP.toString());
+  const yourShare = playerXPBigInt !== BigInt(0) ? (playerXPBigInt * BigInt(100)) / totalXPBigInt : BigInt(0);
 
   return (
     <div>
@@ -63,7 +63,7 @@ const MonsterDisplay: React.FC<MonsterDisplayProps> = ({ monsterName }) => {
         <p>Total XP: {totalXP.toString()}</p>
         <p>Your M1XP: {playerXP.toString()}</p>
         <p>Your Share: {yourShare.toString()}%</p>
-        {/* Tutaj możesz dodać kod obsługujący formularz depozytu */}
+        <FormDisplay monsterName={monsterName} />
       </div>
     </div>
   );
