@@ -1,6 +1,7 @@
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
+import MonsterDisplay from '../components/MonsterDisplay'; // Import MonsterDisplay
 
 const EpochDisplay = dynamic(() => import('../components/EpochDisplay'), { ssr: false });
 
@@ -16,7 +17,26 @@ export default function Home() {
       <main>
         <h1>Witaj w Monster Fight 2.0</h1>
         <EpochDisplay />
+        <div>
+        <MonsterDisplay monsterName="Monster 1" /> {/* Dodano wyświetlenie MonsterDisplay dla Monster 1 */}
+          <div>
+            <p>Deposit</p>
+            <input type="number" placeholder="Enter amount" />
+            <button>Deposit</button>
+            <p>Balance</p>
+          </div>
+        </div>
+        <div>
+          <MonsterDisplay monsterName="Monster 2" /> {/* Dodano wyświetlenie MonsterDisplay dla Monster 2 */}
+          <div>
+            <p>Deposit</p>
+            <input type="number" placeholder="Enter amount" />
+            <button>Deposit</button>
+            <p>Balance</p>
+          </div>
+        </div>
       </main>
     </div>
   );
 }
+
