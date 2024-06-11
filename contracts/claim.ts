@@ -1,6 +1,6 @@
 import { simulateContract, writeContract } from '@wagmi/core';
-import { abi } from '../gameContractABI';
 import { config } from './config';
+import { abi } from '../gameContractABI';
 
 export async function claim() { 
     const contractAddress = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS;
