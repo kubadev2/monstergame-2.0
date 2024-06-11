@@ -1,16 +1,38 @@
-html,
 body {
-  padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  padding: 0;
+  background-color: #333333;
+  color: #ffffff;
+  font-family: Arial, sans-serif;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+button {
+  background-color: #1e1e1e;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  margin: 5px;
+  cursor: pointer;
+  border-radius: 5px;
 }
 
-* {
-  box-sizing: border-box;
+button:hover {
+  background-color: #333333;
+}
+
+input {
+  background-color: #1e1e1e;
+  color: #ffffff;
+  border: 1px solid #333333;
+  padding: 10px;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+div {
+  padding: 10px;
+}
+
+h1, h2 {
+  color: #ffffff;
 }

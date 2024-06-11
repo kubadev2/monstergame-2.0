@@ -34,7 +34,7 @@ const EpochDisplay = () => {
   if (epochLoading || levelLoading) return <div>Loading...</div>;
 
   return (
-    <div>
+    <div className="epoch-display">
       <h1>Current Epoch: {currentEpoch?.toString()}</h1>
       <h2>Player Level: {playerLevel?.toString()}</h2>
     </div>

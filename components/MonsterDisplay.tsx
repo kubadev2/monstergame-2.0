@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
-import { useReadContract, useAccount, useBalance } from 'wagmi';
+import { useReadContract, useAccount } from 'wagmi';
 import { abi } from '../gameContractABI';
 import FormDisplay from './FormDisplay';
+import styles from '../styles/Home.module.css'; // Import styles
+import { claim } from '../contracts/claim'; // Import claim function
 
 interface MonsterDisplayProps {
   monsterName: string;
@@ -57,13 +59,13 @@ const MonsterDisplay: React.FC<MonsterDisplayProps> = ({ monsterName }) => {
   const yourShare = playerXPBigInt !== BigInt(0) ? (playerXPBigInt * BigInt(100)) / totalXPBigInt : BigInt(0);
 
   return (
-    <div>
+    <div className={styles.monsterDisplay}>
       <h2>{monsterName}</h2>
-      <div>
+      <div className={styles.xpInfo}>
         <p>Total XP: {totalXP.toString()}</p>
         <p>Your M1XP: {playerXP.toString()}</p>
         <p>Your Share: {yourShare.toString()}%</p>
-        <FormDisplay monsterName={monsterName} />
+        <FormDisplay monsterName={monsterName}/>
       </div>
     </div>
   );

@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { useBalance, useAccount, useWriteContract } from 'wagmi';
+import { abi } from '../gameContractABI';
+import { writeContract } from '@wagmi/core'; // Importuj tylko writeContract
+import { claim } from '../contracts/claim'; // Importuj funkcję claim
 
 interface FormDisplayProps {
   monsterName: string;
 }
 
-const FormDisplay: React.FC<FormDisplayProps> = ({ monsterName }) => {
+const FormDisplay: React.FC<FormDisplayProps> = ({monsterName}) => { 
   const [selectedOption, setSelectedOption] = useState<'Deposit' | 'Claim'>('Deposit');
   const [amount, setAmount] = useState<string>('');
   const { address: userAddress } = useAccount();
@@ -14,7 +17,6 @@ const FormDisplay: React.FC<FormDisplayProps> = ({ monsterName }) => {
     ? process.env.NEXT_PUBLIC_MONSTER_1_TOKEN
     : process.env.NEXT_PUBLIC_MONSTER_2_TOKEN;
 
-  const contractAddress = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS;
 
   const { data: tokenBalance } = useBalance({
     address: userAddress,
@@ -25,34 +27,29 @@ const FormDisplay: React.FC<FormDisplayProps> = ({ monsterName }) => {
 
   const monsterIndex = monsterName === "Monster 1" ? 0 : 1;
 
-  const { writeContract } = useWriteContract();
-
   const handleMaxClick = () => {
     if (tokenBalance) {
       setAmount(tokenBalance.formatted);
     }
   };
 
-  const handleDeposit = () => {
-    if (amount && userAddress) {
-      writeContract({
-        abi: [],
-        address: contractAddress as `0x${string}`,
-        functionName: 'deposit',
-        args: [BigInt(amount), BigInt(monsterIndex), userAddress],
-      });
+  const handleClaim = async () => { // Wywołaj funkcję claim asynchronicznie
+    try {
+      await claim(); // Wywołaj funkcję claim
+    } catch (error) {
+      console.error("Claim error:", error);
     }
   };
 
   return (
-    <div>
-      <div>
+    <div className="form-display">
+      <div className="button-group">
         <button onClick={() => setSelectedOption('Deposit')}>Deposit</button>
         <button onClick={() => setSelectedOption('Claim')}>Claim</button>
       </div>
 
       {selectedOption === 'Deposit' && (
-        <div>
+        <div className="deposit-section">
           <input
             type="number"
             value={amount}
@@ -60,15 +57,15 @@ const FormDisplay: React.FC<FormDisplayProps> = ({ monsterName }) => {
             placeholder="Enter amount"
           />
           <button onClick={handleMaxClick}>Max</button>
-          <button onClick={handleDeposit}>Deposit</button>
+          <button>Deposit</button>
           <p>Balance: {tokenBalance?.formatted} {monsterName === "Monster 1" ? "M1" : "M2"}</p>
         </div>
       )}
 
       {selectedOption === 'Claim' && (
-        <div>
+        <div className="claim-section">
           <p>{claimText}</p>
-          <button>Claim</button>
+          <button onClick={handleClaim}>Claim</button> {/* Wywołaj handleClaim po kliknięciu */}
         </div>
       )}
     </div>
