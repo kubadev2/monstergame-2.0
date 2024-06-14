@@ -1,3 +1,5 @@
+/* styles/Home.module.css */
+
 /* Style dla całej aplikacji */
 .app {
   background-color: #333333; /* Ciemniejszy odcień szarości */
@@ -8,6 +10,7 @@
   align-items: center;
   justify-content: center;
   padding-top: 80px; /* Dostosuj do wysokości nawigacji */
+  
 }
 
 /* Główna sekcja */
@@ -32,9 +35,9 @@
   border-radius: 10px; /* Zaokrąglone brzegi */
   padding: 1rem; /* Dostosuj odstęp */
   margin: 15px;
-  box-shadow: 0 0 14px rgba(0, 0, 0, 0.3); /* Lekki cień na zewnątrz */
+  box-shadow: 0px 0px 30px rgba(0, 0, 0, 50);
+  text-align: center; /* Wyśrodkowanie tekstu */
 }
-
 
 /* Tytuł */
 .title {
@@ -54,4 +57,59 @@
     flex-direction: column;
     align-items: center;
   }
+}
+
+/* Stylizacja obrazka */
+.monsterImage {
+  width: 100%; /* Obrazek zajmie 100% szerokości swojego kontenera */
+  height: auto; /* Automatyczna wysokość proporcjonalna */
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Przykładowy efekt cienia */
+}
+/* Stylizacja kontenera obrazka */
+.monsterImageContainer {
+  width: 92%; /* Ustaw szerokość kontenera na 100% */
+  height: 300px; /* Ustaw wysokość kontenera */
+  overflow: hidden; /* Ukryj elementy, które wykraczają poza kontener */
+  border-radius: 10px; /* Zaokrąglone brzegi */
+  margin: 0 auto 10px auto; /* Automatyczny margines: góra/dół - 0, lewo/prawo - auto */
+  position: relative; /* Ustaw pozycję względną */
+  display: flex; /* Ustawienie kontenera na flexbox */
+  justify-content: center; /* Wyśrodkowanie zawartości w poziomie */
+  align-items: center; /* Wyśrodkowanie zawartości w pionie */
+  box-shadow: 0px 0px 30px rgba(0, 0, 0, 50);
+}
+
+/* Stylizacja obrazka wewnątrz kontenera */
+.monsterImageContainer .monsterImage {
+  width: 100%; /* Obrazek zajmie 100% szerokości swojego kontenera */
+  height: auto; /* Automatyczna wysokość proporcjonalna */
+  object-fit: cover; /* Dopasowanie obrazka, aby wypełnił cały kontener */
+  border-radius: 10px; /* Zaokrąglone brzegi */
+}
+
+
+
+
+.additionalInfo {
+  margin-top: 20px;
+  font-size: 16px;
+  color: whitesmoke;
+}
+
+.additionalInfo a {
+  color: #0070f3;
+  text-decoration: none;
+}
+
+.additionalInfo a:hover {
+  text-decoration: underline;
+}
+
+.borderedSection {
+  border: 3px solid #000000; /* Czarna ciągła linia o grubości 3px */
+  border-radius: 10px; /* Zaokrąglone brzegi */
+  padding: 1rem; /* Dostosuj odstęp */
+  margin: 15px;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 50);
 }

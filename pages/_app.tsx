@@ -4,14 +4,14 @@ import type { AppProps } from 'next/app';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { WagmiProvider } from 'wagmi';
-import { cronos, cronosTestnet } from 'wagmi/chains'; // Dodano zarówno główną, jak i testową sieć Cronos
+import {/* cronos,*/ cronosTestnet } from 'wagmi/chains'; // Dodano zarówno główną, jak i testową sieć Cronos
 import { getDefaultConfig, RainbowKitProvider } from '@rainbow-me/rainbowkit';
 
 const config = getDefaultConfig({
   appName: 'RainbowKit App',
   projectId: 'YOUR_PROJECT_ID',
   chains: [
-    cronos, // Sieć główna Cronos
+   // cronos, // Sieć główna Cronos
     cronosTestnet, // Sieć testowa Cronos
   ],
   ssr: true,

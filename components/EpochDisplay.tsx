@@ -35,7 +35,7 @@ const EpochDisplay = () => {
 
   return (
     <div className="epoch-display">
-      <h1>Current Epoch: {currentEpoch?.toString()}</h1>
+      <h1>Season: {currentEpoch?.toString()}</h1>
       <h2>Player Level: {playerLevel?.toString()}</h2>
     </div>
   );

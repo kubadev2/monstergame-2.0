@@ -16,7 +16,7 @@ export default function Home() {
       </Head>
       <NavBar />
       <main className={styles.main}>
-        <h1 className={styles.title}>Witaj w Monster Fight 2.0</h1>
+        <h1 className={styles.title}>Monster Fight 2.0</h1>
         <EpochDisplay />
         <div className={styles.monsterContainer}>
           <MonsterDisplay monsterName="Monster 1" /> {/* Dodano wyświetlenie MonsterDisplay dla Monster 1 */}

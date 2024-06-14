@@ -10,5 +10,6 @@ export async function claim() {
         address: contractAddress as `0x${string}`,
         functionName: 'claim',
       });
+      return hash;
   }
   

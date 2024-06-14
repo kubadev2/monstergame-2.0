@@ -1,13 +1,21 @@
+// components/NavBar.tsx
+
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router'; // Import useRouter hook for active link detection
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import styles from '../styles/NavBar.module.css';
 
 const NavBar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter(); // useRouter hook
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+  };
+
+  const closeMenu = () => {
+    setIsOpen(false);
   };
 
   return (
@@ -18,17 +26,20 @@ const NavBar: React.FC = () => {
             ☰
           </button>
           <div className={`${styles.menu} ${isOpen ? styles.menuOpen : ''}`}>
-            <Link href="/" className={styles.link}>
+            <Link href="/" className={`${styles.link} ${router.pathname === '/' ? styles.active : ''}`} onClick={closeMenu}>
               Fight
             </Link>
-            <Link href="/leaderboard" className={styles.link}>
+            <Link href="/leaderboard" className={`${styles.link} ${router.pathname === '/leaderboard' ? styles.active : ''}`} onClick={closeMenu}>
               Leaderboard
             </Link>
-            <Link href="/shop" className={styles.link}>
+            <Link href="/shop" className={`${styles.link} ${router.pathname === '/shop' ? styles.active : ''}`} onClick={closeMenu}>
               Shop
             </Link>
-            <Link href="/quests" className={styles.link}>
+            <Link href="/quests" className={`${styles.link} ${router.pathname === '/quests' ? styles.active : ''}`} onClick={closeMenu}>
               Quests
+            </Link>
+            <Link href="/faucet" className={`${styles.link} ${router.pathname === '/faucet' ? styles.active : ''}`} onClick={closeMenu}>
+              Faucet
             </Link>
           </div>
         </div>
