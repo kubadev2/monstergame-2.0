@@ -332,7 +332,7 @@ export const abi = [
 		"inputs": [
 			{
 				"internalType": "uint256",
-				"name": "amount",
+				"name": "amountInUnits",
 				"type": "uint256"
 			},
 			{

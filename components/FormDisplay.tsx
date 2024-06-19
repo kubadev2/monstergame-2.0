@@ -15,6 +15,7 @@ const FormDisplay: React.FC<FormDisplayProps> = ({ monsterName, playerLevel }) =
   const [selectedOption, setSelectedOption] = useState<'Deposit' | 'Claim'>('Deposit');
   const [amount, setAmount] = useState<number>(0);
   const { address: userAddress } = useAccount();
+  const [loading, setLoading] = useState(false);
 
   const tokenAddress = monsterName === "Monster 1"
     ? process.env.NEXT_PUBLIC_MONSTER_1_TOKEN
@@ -44,9 +45,10 @@ const FormDisplay: React.FC<FormDisplayProps> = ({ monsterName, playerLevel }) =
   };
 
   const handleDeposit = async () => {
+    setLoading(true);
     try {
       let referralAddress = "0x0000000000000000000000000000000000000000";
-    
+
       if (playerLevel === 0) {
         const referralInput = document.getElementById("referral-input") as HTMLInputElement;
         if (referralInput) {
@@ -58,16 +60,19 @@ const FormDisplay: React.FC<FormDisplayProps> = ({ monsterName, playerLevel }) =
           console.error("Referral input element not found");
         }
       }
-    
+
       if (!process.env.NEXT_PUBLIC_CONTRACT_ADDRESS || !tokenAddress) {
         throw new Error("Contract address or token address is not defined");
       }
-    
+
       await deposit(amount, monsterIndex, referralAddress);
     } catch (error) {
       console.error("Deposit error:", error);
     }
-    
+    finally {
+      setLoading(false); // Zakończenie ładowania (niezależnie od wyniku)
+    }
+
   };
 
   return (
@@ -98,7 +103,7 @@ const FormDisplay: React.FC<FormDisplayProps> = ({ monsterName, playerLevel }) =
             <button onClick={handleMaxClick}>Max</button>
           </div>
           <p className="balance-info">Balance: {tokenBalance?.formatted} {monsterName === "Monster 1" ? "M1" : "M2"}</p>
-          <button className="deposit-button" onClick={handleDeposit}>Deposit</button>
+          <button className="deposit-button" onClick={handleDeposit} disabled={loading}>{loading ? 'Waiting...' : 'Deposit'}</button>
         </div>
       )}
 
