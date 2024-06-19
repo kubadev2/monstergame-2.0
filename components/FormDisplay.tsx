@@ -70,7 +70,6 @@ const FormDisplay: React.FC<FormDisplayProps> = ({ monsterName, playerLevel }) =
 
       await deposit(amount, monsterIndex, referralAddress);
       // Po wykonaniu depozytu, ręcznie odświeżamy komponent
-      setRefreshKey(prevKey => prevKey + 1);
     } catch (error) {
       console.error("Deposit error:", error);
     }
