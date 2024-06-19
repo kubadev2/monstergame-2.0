@@ -1,6 +1,6 @@
 // components/FormDisplay.tsx
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useBalance, useAccount } from 'wagmi';
 import { abi } from '../gameContractABI';
 import { claim } from '../contracts/claim'; // Import claim function
@@ -16,6 +16,7 @@ const FormDisplay: React.FC<FormDisplayProps> = ({ monsterName, playerLevel }) =
   const [amount, setAmount] = useState<number>(0);
   const { address: userAddress } = useAccount();
   const [loading, setLoading] = useState(false);
+  const [refreshKey, setRefreshKey] = useState<number>(0); // Klucz do odświeżania komponentu
 
   const tokenAddress = monsterName === "Monster 1"
     ? process.env.NEXT_PUBLIC_MONSTER_1_TOKEN
@@ -23,7 +24,7 @@ const FormDisplay: React.FC<FormDisplayProps> = ({ monsterName, playerLevel }) =
 
   const monsterIndex = monsterName === "Monster 1" ? 0 : 1;
 
-  const { data: tokenBalance } = useBalance({
+  const { data: tokenBalance, refetch: refetchTokenBalance } = useBalance({
     address: userAddress,
     token: tokenAddress as `0x${string}`,
   });
@@ -39,6 +40,8 @@ const FormDisplay: React.FC<FormDisplayProps> = ({ monsterName, playerLevel }) =
   const handleClaim = async () => {
     try {
       await claim();
+      // Po wykonaniu operacji, ręcznie odświeżamy komponent
+      setRefreshKey(prevKey => prevKey + 1);
     } catch (error) {
       console.error("Claim error:", error);
     }
@@ -66,17 +69,18 @@ const FormDisplay: React.FC<FormDisplayProps> = ({ monsterName, playerLevel }) =
       }
 
       await deposit(amount, monsterIndex, referralAddress);
+      // Po wykonaniu depozytu, ręcznie odświeżamy komponent
+      setRefreshKey(prevKey => prevKey + 1);
     } catch (error) {
       console.error("Deposit error:", error);
     }
     finally {
       setLoading(false); // Zakończenie ładowania (niezależnie od wyniku)
     }
-
   };
 
   return (
-    <div className="form-display">
+    <div key={refreshKey} className="form-display"> {/* Klucz komponentu do re-renderowania */}
       <div className="button-group">
         <button className={selectedOption === 'Deposit' ? 'active' : ''} onClick={() => setSelectedOption('Deposit')}>
           Deposit
