@@ -10,7 +10,6 @@
   align-items: center;
   justify-content: center;
   padding-top: 80px; /* Dostosuj do wysokości nawigacji */
-  
 }
 
 /* Główna sekcja */
@@ -20,6 +19,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 0 10px; /* Dodaj padding po bokach */
 }
 
 /* Kontener na monstra */
@@ -35,7 +35,7 @@
   border-radius: 10px; /* Zaokrąglone brzegi */
   padding: 1rem; /* Dostosuj odstęp */
   margin: 15px;
-  box-shadow: 0px 0px 30px rgba(0, 0, 0, 50);
+  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.5);
   text-align: center; /* Wyśrodkowanie tekstu */
 }
 
@@ -47,18 +47,6 @@
   text-align: center;
 }
 
-/* Style dla urządzeń mobilnych */
-@media (max-width: 600px) {
-  .main {
-    padding-top: 100px; /* Dostosuj do wysokości nawigacji na urządzeniach mobilnych */
-  }
-
-  .monsterContainer {
-    flex-direction: column;
-    align-items: center;
-  }
-}
-
 /* Stylizacja obrazka */
 .monsterImage {
   width: 100%; /* Obrazek zajmie 100% szerokości swojego kontenera */
@@ -68,7 +56,7 @@
 }
 /* Stylizacja kontenera obrazka */
 .monsterImageContainer {
-  width: 92%; /* Ustaw szerokość kontenera na 100% */
+  width: 92%; /* Ustaw szerokość kontenera na 92% */
   height: 300px; /* Ustaw wysokość kontenera */
   overflow: hidden; /* Ukryj elementy, które wykraczają poza kontener */
   border-radius: 10px; /* Zaokrąglone brzegi */
@@ -77,7 +65,7 @@
   display: flex; /* Ustawienie kontenera na flexbox */
   justify-content: center; /* Wyśrodkowanie zawartości w poziomie */
   align-items: center; /* Wyśrodkowanie zawartości w pionie */
-  box-shadow: 0px 0px 30px rgba(0, 0, 0, 50);
+  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.5);
 }
 
 /* Stylizacja obrazka wewnątrz kontenera */
@@ -87,9 +75,6 @@
   object-fit: cover; /* Dopasowanie obrazka, aby wypełnił cały kontener */
   border-radius: 10px; /* Zaokrąglone brzegi */
 }
-
-
-
 
 .additionalInfo {
   margin-top: 20px;
@@ -111,5 +96,66 @@
   border-radius: 10px; /* Zaokrąglone brzegi */
   padding: 1rem; /* Dostosuj odstęp */
   margin: 15px;
-  box-shadow: 0 0 50px rgba(0, 0, 0, 50);
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+}
+
+/* Stylizacja elementów faucet */
+.faucetSection {
+  width: 100%; /* Ustaw szerokość sekcji na 100% */
+}
+
+.faucetItem {
+  margin: 10px 0; /* Dodaj margines do każdego elementu */
+  padding: 10px; /* Dodaj padding do każdego elementu */
+  box-sizing: border-box; /* Uwzględnij padding i border w szerokości i wysokości elementu */
+  width: 100%; /* Ustaw szerokość na 100% */
+}
+
+.claimButton {
+  width: calc(100% - 20px) !important; /* Ustaw szerokość przycisku na 100% minus marginesy */
+  padding: 10px; /* Dodaj padding */
+  font-size: 16px; /* Dostosuj rozmiar czcionki */
+  word-break: break-word; /* Złam słowa, aby zapobiec ich wychodzeniu poza ekran */
+  margin: 0 10px !important; /* Dodaj marginesy po bokach */
+}
+
+/* Stylizacja tekstu w faucetItem */
+.faucetItem p {
+  word-wrap: break-word; /* Złam długie słowa, aby nie wychodziły poza ekran */
+  font-size: 14px; /* Zmniejsz rozmiar czcionki dla tekstu */
+}
+
+/* Style dla urządzeń mobilnych */
+@media (max-width: 600px) {
+  .main {
+    padding-top: 100px; /* Dostosuj do wysokości nawigacji na urządzeniach mobilnych */
+  }
+
+  .monsterContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .monsterDisplay {
+    width: 90%; /* Dostosuj szerokość do ekranu mobilnego */
+    margin: 10px 0; /* Zmniejsz margines */
+  }
+
+  .faucetItem {
+    width: 100%; /* Ustaw szerokość na 100% */
+    margin-bottom: 20px; /* Dodaj margines na dole */
+  }
+
+  .claimButton {
+    width: calc(100% - 20px) !important; /* Ustaw szerokość przycisku na 100% minus marginesy */
+    padding: 10px; /* Dodaj padding */
+    font-size: 16px; /* Dostosuj rozmiar czcionki */
+    word-break: break-word; /* Złam słowa, aby zapobiec ich wychodzeniu poza ekran */
+    margin: 0 10px !important; /* Dodaj marginesy po bokach */
+  }
+
+  .faucetItem p {
+    word-wrap: break-word; /* Złam długie słowa, aby nie wychodziły poza ekran */
+    font-size: 14px; /* Zmniejsz rozmiar czcionki dla tekstu */
+  }
 }

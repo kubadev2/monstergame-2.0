@@ -2,13 +2,13 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/router'; // Import useRouter hook for active link detection
+import { useRouter } from 'next/router';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import styles from '../styles/NavBar.module.css';
 
 const NavBar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const router = useRouter(); // useRouter hook
+  const router = useRouter();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);

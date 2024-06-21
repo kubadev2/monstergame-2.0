@@ -11,7 +11,7 @@
   justify-content: center;
   border-bottom-left-radius: 10px; /* Zaokrągl brzegi */
   border-bottom-right-radius: 10px; /* Zaokrągl brzegi */
-  box-shadow: 0px 0px 50px rgba(0, 0, 0, 50);
+  box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.5);
 }
 
 .navContainer {
@@ -60,4 +60,31 @@
 
 .link:hover {
   background-color: #333; /* Kolor tła dla aktywnego linku */
+}
+
+/* Styles for mobile */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+
+  .menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: #1e1e1e;
+    padding: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .menuOpen {
+    display: flex;
+  }
+
+  .link {
+    margin: 0.5rem 0;
+  }
 }
