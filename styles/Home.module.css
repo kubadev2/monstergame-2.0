@@ -101,7 +101,8 @@
 
 /* Stylizacja elementów faucet */
 .faucetSection {
-  width: 100%; /* Ustaw szerokość sekcji na 100% */
+  width: 500px; /* Ustaw szerokość sekcji na 100% */
+  max-width: 100%;
 }
 
 .faucetItem {

@@ -20,8 +20,7 @@ export default function Faucet() {
     } catch (error: any) {
       // Obsługa błędu
       alert(`Claim failed: ${error.message}`); // Obsługa błędu w przypadku niepowodzenia
-    } 
-    finally {
+    } finally {
       setLoading(false); // Zakończenie ładowania (niezależnie od wyniku)
     }
   };
